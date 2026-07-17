@@ -5,20 +5,25 @@
 - [x] Correct product target to **Red Alert 2 / Yuri's Revenge**
 - [x] Research brief: OpenRA `ra` vs OpenRA/ra2 vs Ares/Phobos
 - [x] Public repo `ra2-enhanced` + Chinese announcement
-- [x] Mod INI skeleton + install scripts + LICENSE/NOTICE
+- [x] Mod package + install scripts + LICENSE/NOTICE
+- [x] **Enhanced AI v0 configs** — TaskForces / Scripts / TeamTypes / AITriggerTypes / tiers
+- [x] **Phobos QoL overlays** — tooltips, harvester & power counters, placement preview
+- [x] `STATUS.md` honest Done / In progress / Not started
 
-## Next milestone — Enhanced AI v0
+## In progress — prove AI v0 in-game
 
-1. Merge `aimd-overlay` into a testable CnCNet/Syringe mod folder on a real YR install.
-2. Add `AITriggerTypes` so Enhanced teams actually spawn for Allied/Soviet/Yuri.
-3. Fixed-map A/B: stock Brutal vs Enhanced (expansion timing, AA, harassment).
-4. Publish playtest notes in `CHANGELOG.md`.
+1. Wire overlays on a real YR + Ares + Phobos install
+2. Fixed-map A/B: stock Brutal vs Enhanced (expansion, AA, harassment)
+3. Publish playtest notes in `CHANGELOG.md`
+
+**Blocker on maintainer Mac (2026-07-17):** no `gamemd.exe` / YR tree found — see `docs/machine-scan.md`.
 
 ## Soon after
 
-- Phobos QoL default bundle (tooltips / idle harvester / power clarity) with version pins
-- Optional difficulty profiles: `Enhanced Normal` / `Enhanced Hard`
+- Weight / composition tuning from playtests
+- Optional named profiles: `Enhanced Normal` / `Enhanced Hard` client labels
 - Contributor guide for AITrigger editing without pasting entire vanilla aimd
+- CnCNet mod metadata packaging
 
 ## Later / research
 

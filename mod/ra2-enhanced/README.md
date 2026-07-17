@@ -2,21 +2,40 @@
 
 Text-only overlay for **Yuri's Revenge** with **Ares + Phobos**.
 
-## Files
+## Package layout
 
 | Path | Role |
 |------|------|
-| `expandmd.ini` | Expansion / include entry hints |
-| `rules/rulesmd-overlay.ini` | Safe AI economy / difficulty knobs (stubs) |
-| `ai/aimd-overlay.ini` | TeamType / ScriptType stubs for Enhanced profiles |
-| `qol/qol-phobos.ini` | Phobos QoL toggles (documented defaults) |
+| `expandmd.ini` | Activation / include hints |
+| `includes/*.includes.ini` | One-line `#include` chains for rules / ai / ui |
+| `rules/rulesmd-overlay.ini` | AI pacing knobs + Phobos `AITargetTypes` |
+| `ai/aimd-overlay.ini` | TaskForce / Script / TeamType definitions |
+| `ai/aitriggers-overlay.ini` | `AITriggerTypes` (difficulty tiers + AA conditions) |
+| `qol/qol-phobos.ini` | rulesmd AudioVisual QoL |
+| `qol/uimd-overlay.ini` | Extended tooltips, harvester & power counters |
+| `qol/ra2md-phobos.ini` | `RA2MD.INI` `[Phobos]` user-toggle template |
 | `language/README.md` | String / CSF notes (no binary `.csf` shipped) |
 
-## How to apply
+## Fast activate (after install script)
 
-See [../../docs/install.md](../../docs/install.md). Prefer `#include` from your active INIs or a CnCNet mod folder—do not overwrite vanilla files without a backup.
+1. Ensure Ares + Phobos load with `gamemd.exe`
+2. Append to active INIs (keep backups):
+
+```ini
+; rulesmd.ini
+#include Mods/ra2-enhanced/includes/rulesmd.includes.ini
+
+; aimd.ini
+#include Mods/ra2-enhanced/includes/aimd.includes.ini
+
+; uimd.ini
+#include Mods/ra2-enhanced/includes/uimd.includes.ini
+```
+
+3. Merge `[Phobos]` keys from `qol/ra2md-phobos.ini` into `RA2MD.INI`
 
 ## Compatibility
 
-- Designed against **YR + Ares 3.x + Phobos 0.3+** feature surface.
-- Exact tag availability depends on your Phobos version; comments mark Phobos-only keys.
+- Designed against **YR + Ares 3.x + Phobos 0.3+**
+- Phobos script actions `10000+` are required for Enhanced AI v0 attack scripts
+- Exact tag availability depends on your Phobos build; see upstream docs

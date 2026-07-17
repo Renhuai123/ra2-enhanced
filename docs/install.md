@@ -1,11 +1,13 @@
 # Install guide (RA2 / Yuri's Revenge)
 
+Goal: go from a legal YR folder to Enhanced AI v0 + QoL overlays in a few minutes.
+
 ## Prerequisites
 
 1. Legal **Red Alert 2** + **Yuri's Revenge** install (`gamemd.exe` present).
 2. [Ares](https://launchpad.net/ares/+download) (includes **Syringe**).
-3. [Phobos](https://github.com/Phobos-developers/Phobos/releases) release matching your Ares generation.
-4. Optional: [CnCNet](https://cncnet.org/) YR client or a Syringe-compatible XNA client mod base.
+3. [Phobos](https://github.com/Phobos-developers/Phobos/releases) matching your Ares generation (**required** for AI v0 script actions `10000+`).
+4. Optional: [CnCNet](https://cncnet.org/) YR client.
 
 This repository does **not** ship those downloads.
 
@@ -13,40 +15,67 @@ This repository does **not** ship those downloads.
 
 In the directory that contains `gamemd.exe`:
 
-1. Extract Ares files (including `Syringe.exe`) per Ares docs.
-2. Drop Phobos DLLs / files beside them; Syringe loads Phobos automatically when present.
-3. Launch via `Syringe.exe gamemd.exe` or your CnCNet client (recommended for multiplayer).
-
-Verify stock YR still runs before adding this mod's overlays.
+1. Extract Ares (including `Syringe.exe`) per upstream docs.
+2. Drop Phobos DLLs beside them; Syringe loads Phobos when present.
+3. Confirm stock YR still launches via `Syringe.exe gamemd.exe` (or CnCNet) **before** adding this mod.
 
 ## Install RA2 Enhanced overlays
 
 ### Windows (PowerShell)
 
 ```powershell
-.\scripts\install-mod.ps1 -GameDir "D:\Games\YR"
+git clone https://github.com/Renhuai123/ra2-enhanced.git
+cd ra2-enhanced
+.\scripts\install-mod.ps1 -GameDir "D:\Games\YR" -WireIncludes
 ```
 
-Creates `GameDir\Mods\ra2-enhanced\` (or copies INI overlays — see script output) and prints next steps.
-
-### Shell (Wine / CrossOver prefixes)
+### macOS / Linux shell (Wine / CrossOver prefix)
 
 ```bash
-./scripts/install-mod.sh --game-dir "$HOME/Games/YR"
+git clone https://github.com/Renhuai123/ra2-enhanced.git
+cd ra2-enhanced
+
+# Optional: search common locations
+./scripts/detect-game.sh
+
+./scripts/install-mod.sh --game-dir "/path/to/YR" --wire-includes
+./scripts/validate-mod.sh --game-dir "/path/to/YR"
 ```
 
-## Activation patterns
+`--wire-includes` appends `#include` lines to `rulesmd.ini` / `aimd.ini` / `uimd.ini` and creates `.bak` backups once.
 
-Mods differ in how they merge INIs. Supported approaches for this skeleton:
+### Manual activation (if you skip wire)
 
-1. **Manual merge / `#include`** — point your active `rulesmd.ini` / `aimd.ini` at files under `mod/ra2-enhanced/` (see comments in those files).
-2. **CnCNet / XNA client mod folder** — copy `mod/ra2-enhanced/` into the client's mod directory and enable the mod in the client UI.
-3. **Direct drop-in for testing** — copy overlay fragments into the game dir **only** if you keep backups of original INIs.
+Append:
 
-Always keep backups of original `rulesmd.ini` / `aimd.ini` before experimenting.
+```ini
+; rulesmd.ini
+#include Mods/ra2-enhanced/includes/rulesmd.includes.ini
+
+; aimd.ini
+#include Mods/ra2-enhanced/includes/aimd.includes.ini
+
+; uimd.ini
+#include Mods/ra2-enhanced/includes/uimd.includes.ini
+```
+
+Merge `[Phobos]` keys from `Mods/ra2-enhanced/qol/ra2md-phobos.ini` into `RA2MD.INI`.
+
+## What you get
+
+| Overlay | Effect |
+|---------|--------|
+| AI v0 | Militia / harass / eco-raid / AA-response teams + triggers |
+| Difficulty tiers | Extra pressure on Hard AI; Easy mostly stock |
+| QoL | Extended tooltips, harvester counter, power delta, placement preview |
 
 ## Verify
 
-- Game launches through Syringe / CnCNet without missing-DLL errors.
-- Skirmish AI section / custom includes load (check Phobos log if enabled).
-- No `.mix` / binary files were added from this repo (there should be none).
+- Game launches through Syringe / CnCNet without missing-DLL errors
+- `./scripts/validate-mod.sh --game-dir …` passes
+- Skirmish: Hard AI fields harass / AA teams (see `mod/ra2-enhanced/ai/README.md`)
+- No `.mix` / binary files came from this repo
+
+## Status honesty
+
+See [STATUS.md](../STATUS.md). Configs can be complete while **in-game proof** is still pending on a machine without YR.
