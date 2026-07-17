@@ -1,0 +1,31 @@
+RA2 Enhanced — NOTICE
+=====================
+
+This project is an unofficial, fan-made **mod / ruleset** for
+Command & Conquer: Red Alert 2 and Yuri's Revenge.
+
+Intellectual property
+---------------------
+Command & Conquer, Red Alert, Red Alert 2, Yuri's Revenge, and related
+marks are trademarks / IP of Electronic Arts Inc. (EA).
+This project is **not** affiliated with, endorsed by, or sponsored by EA.
+
+What this repository contains
+-----------------------------
+- Open-source INI rules, AI stubs, QoL notes, install scripts, and docs
+- No game binaries, no `.mix` / asset packs, no redistributed Ares/Phobos DLLs
+
+What you must provide yourself
+------------------------------
+- A legally obtained Red Alert 2 + Yuri's Revenge install
+- Engine extensions (Ares / Phobos / Syringe) downloaded from their
+  official project pages
+- Optional: CnCNet client for online / modern launching
+
+EA modding guidelines
+---------------------
+As a modification, this project aims to comply with EA's published
+Command & Conquer modding guidelines. If a conflict arises between this
+project's license and those guidelines, the guidelines take precedence
+for distribution and commercial use (this mod must not be sold as a
+standalone commercial RA2 product).

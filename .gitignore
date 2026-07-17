@@ -1,0 +1,48 @@
+# Never commit game binaries or copyrighted assets
+*.exe
+*.dll
+*.mix
+*.bag
+*.idx
+*.csf
+*.shp
+*.vxl
+*.hva
+*.wav
+*.aud
+*.bik
+*.mp3
+*.wmv
+*.pak
+*.BIG
+*.big
+*.pdb
+*.ilk
+
+# Common Westwood / launcher filenames (root-level game files only)
+/gamemd.exe
+/gamemd.exe
+/RA2.exe
+/RA2MD.exe
+/Yuri.exe
+/YuriMD.exe
+/Syringe.exe
+/Ares.dll
+/Ares.*.dll
+/Phobos.dll
+/Phobos.*.dll
+
+# Local install / OS
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.idea/
+.vscode/
+*.swp
+
+# Local game path overrides
+.env
+local.ini
+paths.local
+install-config.local
